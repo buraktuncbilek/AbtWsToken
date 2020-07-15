@@ -1,9 +1,9 @@
 # WsToken
-`tr` Token üreten basit class library.<br/>
+`tr` Token Ã¼reten basit class library.<br/>
 `en` A simple tokenizer class library.
 
 ## About
-`tr` Eğitim amaçlı geliştirilmiş bir projedir.<br/>
+`tr` EÄŸitim amaÃ§lÄ± geliÅŸtirilmiÅŸ bir projedir.<br/>
 `en` Developed for educational purposes.
 
 ## Contact
