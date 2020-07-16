@@ -159,6 +159,22 @@ namespace AbtWsToken
             return token;
         }
 
+        public static bool CheckTokenValidity(string _token)
+        {
+            ClearExpiredTokensSync();
+
+            if (_ins is null)
+                throw new ApplicationException("[tr] Uygulamanın bir örneği başlatılmamış! [en] An instance of application is not started!");
+
+            var find = from x in _ins.liste where x.Key == _token select x.Value;
+            if (find is null)
+                return false;
+            if (find.Count() <= 0)
+                return false;
+            return (find.ToList()[0] - DateTime.Now).TotalSeconds > 0;
+
+        }
+
         public static void EndInit() //Dispose 
         {
             if (_ins is null)
@@ -174,6 +190,11 @@ namespace AbtWsToken
         #region ClearExpiredTokens
         internal static void ClearExpiredTokens()
         {
+            if (_ins is null)
+                return;
+            if (_ins.liste is null)
+                return;
+
             var expiredTokens = from token in _ins.liste where token.Value <= DateTime.Now select token;
             if (expiredTokens.Count() > 0)
             {
